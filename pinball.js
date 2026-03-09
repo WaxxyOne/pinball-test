@@ -228,8 +228,9 @@ window.addEventListener("keydown", (event) => {
     }
   }
 
-  if (event.key === "Enter" && !state.ball.inPlay && !state.gameOver) {
-    state.plungerCharge = Math.min(900, state.plungerCharge + 280);
+  if (event.code === "Space" && !state.ball.inPlay && !state.gameOver) {
+    event.preventDefault();
+    state.plungerCharge = Math.min(1300, state.plungerCharge + 520);
     launchBall();
   }
 });
@@ -246,7 +247,7 @@ window.addEventListener("keyup", (event) => {
 });
 
 function launchBall() {
-  const launchForce = Math.max(620, state.plungerCharge);
+  const launchForce = Math.max(1180, state.plungerCharge);
   state.ball.inPlay = true;
   state.ball.vel.y = -launchForce;
   state.ball.vel.x = -120;
