@@ -8,7 +8,7 @@ A browser-based pinball game framework with:
 - Player controls:
   - **Left Shift** for the left flipper.
   - **Right Shift** for the right flipper.
-  - **Spacebar** to fire the plunger and launch the ball.
+  - **Control** to fire the plunger and launch the ball.
 - Procedural bounce and rolling sound effects generated in real-time using the Web Audio API.
 - Three-ball game loop with game over screen.
 

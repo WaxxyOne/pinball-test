@@ -150,10 +150,11 @@ const layouts = [
     ],
     [
       [{ x: 110, y: 120 }, { x: 130, y: 1000 }],
-      [{ x: 790, y: 120 }, { x: 760, y: 1000 }],
-      [{ x: 150, y: 120 }, { x: 740, y: 120 }],
+      [{ x: 770, y: 120 }, { x: 760, y: 1000 }],
+      
       [{ x: 250, y: 710 }, { x: 390, y: 520 }],
       [{ x: 650, y: 710 }, { x: 510, y: 520 }],
+      [{ x: 950, y: 60 }, { x: 710, y: 20 }],
     ]
   ),
   new TableLayout(
@@ -170,7 +171,7 @@ const layouts = [
       [{ x: 240, y: 600 }, { x: 300, y: 360 }],
       [{ x: 660, y: 600 }, { x: 600, y: 360 }],
       [{ x: 260, y: 830 }, { x: 430, y: 710 }],
-      [{ x: 640, y: 830 }, { x: 470, y: 710 }],
+      [{ x: 600, y: 830 }, { x: 470, y: 710 }],
     ]
   ),
 ];
@@ -181,8 +182,8 @@ const state = {
   ballsRemaining: 3,
   ball: null,
   plungerCharge: 0,
-  leftFlipper: new Flipper(325, 1030, 140, "left"),
-  rightFlipper: new Flipper(575, 1030, 140, "right"),
+  leftFlipper: new Flipper(245, 1030, 140, "left"),
+  rightFlipper: new Flipper(635, 1030, 140, "right"),
   gameOver: false,
 };
 
@@ -228,10 +229,9 @@ window.addEventListener("keydown", (event) => {
     }
   }
 
-  if (event.code === "Space" && !state.ball.inPlay && !state.gameOver) {
+  if ((event.code === "ControlLeft" || event.code === "ControlRight") && !state.ball.inPlay && !state.gameOver) {
     event.preventDefault();
-    state.plungerCharge = Math.min(1300, state.plungerCharge + 520);
-    launchBall();
+    state.plungerCharge = Math.min(2000, state.plungerCharge + 520);
   }
 });
 
@@ -243,6 +243,10 @@ window.addEventListener("keyup", (event) => {
     if (event.location === 2) {
       state.rightFlipper.isPressed = false;
     }
+  }
+
+  if ((event.code === "ControlLeft" || event.code === "ControlRight") && state.plungerCharge > 0) {
+    launchBall();
   }
 });
 
